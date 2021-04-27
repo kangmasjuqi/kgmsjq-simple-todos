@@ -7,9 +7,9 @@ the app is intended to be used on your local machine only as a simple todo-list 
 
 ## how to use
 
-- clone the repo in the root of your local web server
-- dump the db file `todos.sql` to your database
-- adjust the database configuration in the file `api.php` with your local configuration
+- clone the repo into the root of your local web server
+- dump the db file `todos.sql` into your database
+- adjust the database configuration in the file `api.php` using your local configuration
 - using browser, go to `http://localhost/kgmsjq-simple-todos`
 
 ## todolist

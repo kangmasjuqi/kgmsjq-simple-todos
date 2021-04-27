@@ -2,11 +2,13 @@
 $( document ).ready(
     function() {
 
+        let root_url = 'http://localhost/kgmsjq-simple-todos/';
+
         var id_latest_entry = 1;
 
         $.ajax(
             {
-                url: 'http://localhost/todos/api.php?f=retrieve&d=latest_entry',
+                url: root_url + 'api.php?f=retrieve&d=latest_entry',
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
@@ -43,7 +45,7 @@ $( document ).ready(
             function() {
                 $.ajax(
                     {
-                        url: 'http://localhost/todos/api.php?f=create&d=0',
+                        url: root_url + 'api.php?f=create&d=0',
                         type: 'POST',
                         data: {
                             'title' : $("#new-todo-title").val(),
@@ -64,7 +66,7 @@ $( document ).ready(
             let todo_id = $("#todo-id").val()
             $.ajax(
                 {
-                    url: 'http://localhost/todos/api.php?f=update&d='+todo_id,
+                    url: root_url + 'api.php?f=update&d='+todo_id,
                     type: 'POST',
                     data: {
                         'id': todo_id, 
@@ -86,7 +88,7 @@ $( document ).ready(
             let todo_id = $("#todo-id").val()
             $.ajax(
                 {
-                    url: 'http://localhost/todos/api.php?f=update&d='+todo_id,
+                    url: root_url + 'api.php?f=update&d='+todo_id,
                     type: 'POST',
                     data: {
                         'id': todo_id, 
@@ -119,7 +121,7 @@ $( document ).ready(
             $( '#loading-notif' ).show();
             $.ajax(
                 {
-                    url: 'http://localhost/todos/api.php?f=retrieve&d=all',
+                    url: root_url + 'api.php?f=retrieve&d=all',
                     type: 'GET',
                     dataType: 'json',
                     success: function(res) {
@@ -155,7 +157,7 @@ $( document ).ready(
             $( '.form-box' ).removeClass( 'highlight' );
             $.ajax(
                 {
-                    url: 'http://localhost/todos/api.php?f=retrieve&d=' + todo_id,
+                    url: root_url + 'api.php?f=retrieve&d=' + todo_id,
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {

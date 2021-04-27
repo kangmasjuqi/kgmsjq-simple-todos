@@ -12,9 +12,14 @@ the app is intended to be used ONLY on your local machine as a simple todo-list 
 - adjust the database configuration in the file `api.php` using your local configuration
 - using browser, go to `http://localhost/kgmsjq-simple-todos`
 
+if you choose to rename the app default folder `kgmsjq-simple-todos` to `MY_APP`, then : 
+- update `root_url` in `app.js`, replace `kgmsjq-simple-todos` to `MY_APP`
+- using browser, go to `http://localhost/MY_APP`
+
 ## todolist
 
 - add simple WYSIWYG
+- update title in the list once the title updated on the main container
 - refactor code to OOP
 - add ordering on api
 - implement sorting using title

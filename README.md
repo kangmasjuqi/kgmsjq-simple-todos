@@ -1,6 +1,11 @@
 # kgmsjq-simple-todos
 
 
+## purpose
+
+the app is intended to be used on your local machine only as a simple todo-list manager
+
+
 ## todolist
 
 - add simple WYSIWYG

@@ -122,8 +122,10 @@ function update($conn, $id, $changed_data){
 }
 
 function create($conn, $new_data){
-    $result = create_data($conn, $new_data);
-    echo jsonify($new_data);        
+    $result = [];
+    if($new_data['title']!=='' && $new_data['content']!=='')
+        $result = create_data($conn, $new_data);
+    echo jsonify($result);        
 }
 
 ?>

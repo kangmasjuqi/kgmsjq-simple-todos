@@ -12,9 +12,14 @@ $( document ).ready(
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
-                    id_latest_entry = data.id
-                    get_todo_detail( id_latest_entry )
-                    console.log(data)
+                    if(data==null){
+                        $('.create-container').show();
+                        $('.detail-container').hide();
+                    }
+                    else {
+                        id_latest_entry = data.id
+                        get_todo_detail( id_latest_entry )
+                    }
                 },
                 error: function(xhr, textStatus, errorThrown){
                     
@@ -161,11 +166,15 @@ $( document ).ready(
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {
-                        $( ".form-box" ).find( "input#todo-id" ).val( data.id );
-                        $( ".form-box" ).find( "input#todo-title" ).val( data.title );
-                        $( ".form-box" ).find( "textarea#todo-content" ).val( data.content );
-                        $( '#loading-notif' ).hide();
-                        $( '.form-box' ).addClass( 'highlight' );
+                        if(data==null)
+                            $('.detail-container').hide();
+                        else {
+                            $( ".form-box" ).find( "input#todo-id" ).val( data.id );
+                            $( ".form-box" ).find( "input#todo-title" ).val( data.title );
+                            $( ".form-box" ).find( "textarea#todo-content" ).val( data.content );
+                            $( '#loading-notif' ).hide();
+                            $( '.form-box' ).addClass( 'highlight' );
+                        }
                     },
                     error: function(xhr, textStatus, errorThrown){
                         $( '#error-notif' ).show();

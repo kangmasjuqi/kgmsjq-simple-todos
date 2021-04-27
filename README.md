@@ -3,7 +3,7 @@
 
 ## purpose
 
-the app is intended to be used only on your local machine as a simple todo-list manager
+the app is intended to be used ONLY on your local machine as a simple todo-list manager
 
 ## how to use
 

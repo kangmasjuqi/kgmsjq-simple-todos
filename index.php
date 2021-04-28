@@ -1,7 +1,16 @@
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="language" content="english">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Simple TODO App">
+    <meta name="author" content="Marjuqi R.">
+    <title>Simple TODO App</title>
+
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="app.css">
+
 </head>
 <body>
 
@@ -19,16 +28,10 @@
             <div id="table">
                 <h3 style="text-align: center;">TODOS</h3>
                 <div class="table-responsive">
-                    <table class="table table-striped" id="todo-list">
-                        <thead>
-                            <th>
-                                <button class="btn btn-info pull-right create-todo">
-                                    Add new todo</button>
-                            </th>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+                   <button class="btn btn-info pull-right create-todo">Add new todo</button>
+                   <ul class="list-unstyled" id="todo-list"><li style="display:none;"></li></ul>
                 </div>
+                <p id="reordered-saved"><small>Reordered sucessfully!</small></p>
             </div>
         </div>
         <div class="col-md-9">
@@ -71,7 +74,26 @@
 </div>
 
 <script src="jquery-3.6.0.min.js"></script>
+<script src="jquery-ui.js"></script>
 <script src="bootstrap.min.js"></script>
+<?php 
+    // https://stackoverflow.com/questions/18220977/how-do-i-get-the-root-url-of-the-site
+    function pathUrl($dir = __DIR__){
+        $root = "";
+        $dir = str_replace('\\', '/', realpath($dir));
+        $root .= !empty($_SERVER['HTTPS']) ? 'https' : 'http';
+        $root .= '://' . $_SERVER['HTTP_HOST'];
+        if(!empty($_SERVER['CONTEXT_PREFIX'])) {
+            $root .= $_SERVER['CONTEXT_PREFIX'];
+            $root .= substr($dir, strlen($_SERVER[ 'CONTEXT_DOCUMENT_ROOT' ]));
+        } else {
+            $root .= substr($dir, strlen($_SERVER[ 'DOCUMENT_ROOT' ]));
+        }
+        $root .= '/';
+        return $root;
+    }
+?>
+<script >let root_url = '<?php echo pathUrl(); ?>' </script>
 <script src="app.js"></script>
 </body>
 </html>

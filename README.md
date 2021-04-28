@@ -21,8 +21,6 @@ if you choose to rename the app default folder `kgmsjq-simple-todos` to `MY_APP`
 - add simple WYSIWYG
 - update title in the list once the title updated on the main container
 - refactor code to OOP
-- add ordering on api
-- implement sorting using title
 - ...
 
 ## contact

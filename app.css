@@ -57,13 +57,30 @@
     display: none;
 }
 
-.link-detail:hover{
-    background: #eef;
-    padding:5px 0px;
+#reordered-saved{
+    padding: 5px;
+    width: 180px;
+    color: #48a73d;
+    background: #ffff004f;
+    display: none;
+    margin:0 auto;
 }
-.link-detail span{
-    width: 100%;
-    display: inline-table;
+
+#todo-list li
+{
+    padding:8px;
+    background-color:#f9f9f9;
+    border:1px dotted #ccc;
+    cursor:move;
+    margin-top:4px;
+}
+#todo-list li.ui-state-highlight
+{
+    padding:18px;
+    background-color:#ffffcc;
+    border:1px dotted #ccc;
+    cursor:move;
+    margin-top:4px;
 }
 
 .footer{

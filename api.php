@@ -11,11 +11,11 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-function create_data($conn, $array_data){
+function create_data($conn, $array_data, $highest_ordering = 0){
     $fields = '';
     $values = '';
 
-    $array_data['ordering'] = 0;
+    $array_data['ordering'] = $highest_ordering + 1;
     $array_data['created_at'] = date("Y-m-d H:i:s");
 
     foreach($array_data as $f => $v){
@@ -34,6 +34,21 @@ function create_data($conn, $array_data){
     }
 
     $result = get_data($conn, $id);
+    return $result;
+}
+
+function update_data_ordering($conn, $todo_id_array){    
+    $order = 1;
+    $result = [];
+    $todo_id_array = array_reverse($todo_id_array);
+    foreach ($todo_id_array as $id) {
+        if(is_numeric($id)){
+            $sql = "update todos set ordering=".$order." where id='".(int)$id."'";
+            $conn->query($sql);
+            $result[$id] = $order;
+            $order++;
+        }
+    }
     return $result;
 }
 
@@ -56,7 +71,7 @@ function get_data($conn, $id = ''){
     if($id !== '')
         $where = " WHERE id='".(int)$id."'";
 
-    $sql = "select * from todos ".$where." order by id desc";
+    $sql = "select * from todos ".$where." order by ordering desc";
 
     $raw = $conn->query($sql);
     $result = [];
@@ -76,7 +91,6 @@ function get_raw_data($conn, $sql){
 
     $raw = $conn->query($sql);
     $result = $raw->fetch_assoc();
-    $conn->close();
     return $result;
 }
 
@@ -85,8 +99,8 @@ function jsonify($data){
 }
 
 
-if( 'retrieve' === $_GET['f'] && 'latest_entry' == $_GET['d'])
-    get_latest_entry($conn);
+if( 'retrieve' === $_GET['f'] && 'highest_ordering' == $_GET['d'])
+    get_highest_ordering_todo($conn);
 
 else if( 'retrieve' === $_GET['f'] && 'all' == $_GET['d'])
     get_all($conn);
@@ -97,12 +111,15 @@ else if( 'retrieve' === $_GET['f'] && is_numeric($_GET['d'])===TRUE)
 else if( 'update' === $_GET['f'] && is_numeric($_GET['d'])===TRUE )
     update($conn, $_POST['id'], $_POST['changed_data']);
 
+else if( 'sort' === $_GET['f'] && 'all' == $_GET['d'])
+    update_ordering($conn, $_POST['todo_id_array']);
+
 else if( 'create' === $_GET['f'] && is_numeric($_GET['d'])===TRUE ){
     create($conn, $_POST);
 }
 
-function get_latest_entry($conn){
-    $sql = "select * from todos order by id desc";
+function get_highest_ordering_todo($conn){
+    $sql = "select * from todos order by ordering desc";
     $result = get_raw_data($conn, $sql);
     echo jsonify($result);        
 }
@@ -122,10 +139,24 @@ function update($conn, $id, $changed_data){
     echo jsonify($result);
 }
 
+function update_ordering($conn, $todo_id_array){
+    $result = update_data_ordering($conn, $todo_id_array);
+    echo jsonify($result);
+}
+
 function create($conn, $new_data){
     $result = [];
-    if($new_data['title']!=='' && $new_data['content']!=='')
-        $result = create_data($conn, $new_data);
+    if($new_data['title']!=='' && $new_data['content']!==''){
+
+        $sql_order = "select max(ordering) as max_ordering from todos";
+        $raw_highest_ordering = get_raw_data($conn, $sql_order);
+        $highest_ordering = 0;
+        if(!empty($raw_highest_ordering) && $raw_highest_ordering['max_ordering']!==NULL){
+            $highest_ordering = $raw_highest_ordering['max_ordering'];
+        }
+
+        $result = create_data($conn, $new_data, $highest_ordering);
+    }
     echo jsonify($result);        
 }
 

@@ -1,14 +1,11 @@
 
-$( document ).ready(
-    function() {
+$( document ).ready(function() {
 
-        let root_url = 'http://localhost/kgmsjq-simple-todos/';
-
-        var id_latest_entry = 1;
-
+        // get highest_ordering-todo
+        var id_highest_ordering = 1;
         $.ajax(
             {
-                url: root_url + 'api.php?f=retrieve&d=latest_entry',
+                url: root_url + 'api.php?f=retrieve&d=highest_ordering',
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
@@ -17,17 +14,28 @@ $( document ).ready(
                         $('.detail-container').hide();
                     }
                     else {
-                        id_latest_entry = data.id
-                        get_todo_detail( id_latest_entry )
+                        id_highest_ordering = data.id
+                        get_todo_detail( id_highest_ordering )
                     }
                 },
-                error: function(xhr, textStatus, errorThrown){
-                    
-                }
+                error: function(xhr, textStatus, errorThrown){}
             }
         );
 
+        // get list todo
         get_list_todos();
+
+        // get detail todo when it's title clicked
+        $( '#todo-list' ).on(
+            'click',
+            '.link-detail',
+            function() {
+                $('.create-container').hide();
+                $('.detail-container').show();
+                var todo_id = $( this ).data( 'todo-id' );
+                get_todo_detail( todo_id )
+            }
+        );
 
         function display_note(){
             setTimeout(() => { 
@@ -37,6 +45,31 @@ $( document ).ready(
                 $('#changes-saved').hide()
             }, 10000);            
         }
+
+        $( "#todo-list" ).sortable({
+            placeholder : "ui-state-highlight",
+            update  : function(event, ui)
+            {
+                var todo_id_array = new Array();
+                $('#todo-list li').each(function(){
+                    todo_id_array.push($(this).attr("id"));
+                });
+
+                $.ajax({
+                    url: root_url + 'api.php?f=sort&d=all',
+                    method:"POST",
+                    data:{todo_id_array:todo_id_array},
+                    success:function(data){
+                        setTimeout(() => { 
+                            $('#reordered-saved').show()
+                        }, 500);
+                        setTimeout(() => {
+                            $('#reordered-saved').hide()
+                        }, 3000);
+                    }
+                });
+            }
+        });
 
         $('.create-todo').click(function(e){
             e.preventDefault();
@@ -57,11 +90,9 @@ $( document ).ready(
                             'content' : $("#new-todo-content").val()
                         },
                         success: function (response) {
-                            location.reload();
+                            location.reload()
                         },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            // console.log(textStatus, errorThrown);
-                        }
+                        error: function(jqXHR, textStatus, errorThrown) {}
                     }
                 );
             }
@@ -82,9 +113,7 @@ $( document ).ready(
                     success: function (response) {
                         display_note();
                     },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        // console.log(textStatus, errorThrown);
-                    }
+                    error: function(jqXHR, textStatus, errorThrown) {}
                 }
             );
         });
@@ -104,23 +133,10 @@ $( document ).ready(
                     success: function (response) {
                         display_note();
                     },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        // console.log(textStatus, errorThrown);
-                    }
+                    error: function(jqXHR, textStatus, errorThrown) {}
                 }
             );
         });
-
-        $( '#todo-list' ).on(
-            'click',
-            '.link-detail',
-            function() {
-                $('.create-container').hide();
-                $('.detail-container').show();
-                var todo_id = $( this ).data( 'todo-id' );
-                get_todo_detail( todo_id )
-            }
-        );
 
         function get_list_todos(){
             $( '#loading-notif' ).show();
@@ -135,15 +151,14 @@ $( document ).ready(
                             res,
                             function(key,data) {
                                 todo_data =
-                                    '<tr>' +
-                                        '<td>' +
-                                            '<a class="link-detail" href="#" '+
-                                                'data-todo-id="' + data.id + '">' + 
-                                                '<span>' + data.title + '</span>' +
-                                            '</a>'
-                                        '</td>'+
-                                    '</tr>';
-                                    $( "table#todo-list tr:last" ).after( todo_data );
+                                    '<li id="' + data.id + '">' +
+                                        '<a class="link-detail" href="#" '+
+                                            'data-todo-id="' + data.id + '">' + 
+                                            '<span>' + data.title + '</span>' +
+                                        '</a>'
+                                    '</li>';
+                                    $( "#todo-list li:last" ).after( todo_data );
+
                             }
                         );
                     },

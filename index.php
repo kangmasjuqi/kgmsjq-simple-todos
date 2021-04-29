@@ -8,7 +8,10 @@
     <meta name="author" content="Marjuqi R.">
     <title>Simple TODO App</title>
 
-    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome.min.css" rel="stylesheet">
+    <link href="wysiwyg-editor-bootstrap/dist/css/wysiwyg.css" rel="stylesheet">
+    <link href="wysiwyg-editor-bootstrap/dist/css/highlight.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="app.css">
 
 </head>
@@ -73,9 +76,21 @@
     </div>
 </div>
 
-<script src="jquery-3.6.0.min.js"></script>
+<script src="jquery.min.js"></script>
 <script src="jquery-ui.js"></script>
 <script src="bootstrap.min.js"></script>
+<script src="wysiwyg-editor-bootstrap/dist/js/wysiwyg.js"></script>
+<script src="wysiwyg-editor-bootstrap/dist/js/highlight.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#todo-content').wysiwyg({
+            highlight: true
+        });
+        $('#new-todo-content').wysiwyg({
+            highlight: true
+        });
+    });
+</script>
 <?php 
     // https://stackoverflow.com/questions/18220977/how-do-i-get-the-root-url-of-the-site
     function pathUrl($dir = __DIR__){

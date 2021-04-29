@@ -87,7 +87,7 @@ $( document ).ready(function() {
                         type: 'POST',
                         data: {
                             'title' : $("#new-todo-title").val(),
-                            'content' : $("#new-todo-content").val()
+                            'content' : $( "textarea#new-todo-content" ).siblings( ".editor-content" ).html()
                         },
                         success: function (response) {
                             location.reload()
@@ -118,7 +118,7 @@ $( document ).ready(function() {
             );
         });
 
-        $("#todo-content").on("change keyup paste", function() {
+        $( "textarea#todo-content" ).siblings( ".editor-content" ).on("change keyup paste", function() {
             let todo_id = $("#todo-id").val()
             $.ajax(
                 {
@@ -127,7 +127,7 @@ $( document ).ready(function() {
                     data: {
                         'id': todo_id, 
                         'changed_data': {
-                            'content' : $("#todo-content").val()
+                            'content' : $( "textarea#todo-content" ).siblings( ".editor-content" ).html()
                         }
                     },
                     success: function (response) {
@@ -155,6 +155,8 @@ $( document ).ready(function() {
                                         '<a class="link-detail" href="#" '+
                                             'data-todo-id="' + data.id + '">' + 
                                             '<span>' + data.title + '</span>' +
+                                            '<img width="12px" src="up-arrow.svg">' +
+                                            '<img width="12px" src="down-arrow.svg">' +
                                         '</a>'
                                     '</li>';
                                     $( "#todo-list li:last" ).after( todo_data );
@@ -186,7 +188,7 @@ $( document ).ready(function() {
                         else {
                             $( ".form-box" ).find( "input#todo-id" ).val( data.id );
                             $( ".form-box" ).find( "input#todo-title" ).val( data.title );
-                            $( ".form-box" ).find( "textarea#todo-content" ).val( data.content );
+                            $( "textarea#todo-content" ).siblings( ".editor-content" ).html( data.content )
                             $( '#loading-notif' ).hide();
                             $( '.form-box' ).addClass( 'highlight' );
                         }

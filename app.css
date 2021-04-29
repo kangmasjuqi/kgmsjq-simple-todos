@@ -66,6 +66,10 @@
     margin:0 auto;
 }
 
+#todo-list
+{
+    margin-top: 40px;
+}
 #todo-list li
 {
     padding:8px;
@@ -73,6 +77,15 @@
     border:1px dotted #ccc;
     cursor:move;
     margin-top:4px;
+}
+#todo-list li a:hover
+{
+    color:red;
+}
+#todo-list li a span
+{
+    width:90%;
+    display: inline-table;
 }
 #todo-list li.ui-state-highlight
 {

@@ -8,11 +8,11 @@
     <meta name="author" content="Marjuqi R.">
     <title>Simple TODO App</title>
 
-    <link href="bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="wysiwyg-editor-bootstrap/dist/css/wysiwyg.css" rel="stylesheet">
     <link href="wysiwyg-editor-bootstrap/dist/css/highlight.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="app.css">
+    <link href="css/app.css" rel="stylesheet">
 
 </head>
 <body>
@@ -76,9 +76,9 @@
     </div>
 </div>
 
-<script src="jquery.min.js"></script>
-<script src="jquery-ui.js"></script>
-<script src="bootstrap.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="wysiwyg-editor-bootstrap/dist/js/wysiwyg.js"></script>
 <script src="wysiwyg-editor-bootstrap/dist/js/highlight.js"></script>
 <script type="text/javascript">
@@ -109,6 +109,6 @@
     }
 ?>
 <script >let root_url = '<?php echo pathUrl(); ?>' </script>
-<script src="app.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

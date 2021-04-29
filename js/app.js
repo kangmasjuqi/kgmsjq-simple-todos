@@ -155,8 +155,8 @@ $( document ).ready(function() {
                                         '<a class="link-detail" href="#" '+
                                             'data-todo-id="' + data.id + '">' + 
                                             '<span>' + data.title + '</span>' +
-                                            '<img width="12px" src="up-arrow.svg">' +
-                                            '<img width="12px" src="down-arrow.svg">' +
+                                            '<img width="12px" src="img/up-arrow.svg">' +
+                                            '<img width="12px" src="img/down-arrow.svg">' +
                                         '</a>'
                                     '</li>';
                                     $( "#todo-list li:last" ).after( todo_data );

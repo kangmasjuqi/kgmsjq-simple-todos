@@ -42,16 +42,16 @@
         var defaults = {
             toolbar: [
                 ['mode'],
-                ['operations', ['undo', 'rendo', 'cut', 'copy', 'paste']],
+                /*['operations', ['undo', 'rendo', 'cut', 'copy', 'paste']],*/
                 ['styles'],
                 ['fonts', ['select', 'size']],
-                ['text', ['bold', 'italic', 'underline', 'strike', 'subscript', 'superscript', 'font-color', 'bg-color']],
+                ['text', ['bold', 'italic', 'underline', /* 'strike', 'subscript', 'superscript',*/ 'font-color', 'bg-color']],
                 ['align', ['left', 'center', 'right', 'justify']],
                 ['lists', ['unordered', 'ordered', 'indent', 'outdent']],
                 ['components', ['table', /*'chart'*/]],
-                ['intervals', ['line-height', 'letter-spacing']],
-                ['insert', ['emoji', 'link', 'image', 'video', 'symbol', /*'bookmark'*/]],
-                ['special', ['print', 'unformat', 'visual', 'clean']],
+                /*['intervals', ['line-height', 'letter-spacing']],
+                ['insert', ['emoji', 'link', 'image', 'video', 'symbol', 'bookmark']],
+                ['special', ['print', 'unformat', 'visual', 'clean']],*/
                 /*['fullscreen'],*/
             ],
             fontSizes: ['8px', '9px', '10px', '11px', '12px', '14px', '15px', '16px', '18px', '20px', '24px', '30px', '32px', '36px', '48px'],
@@ -1214,7 +1214,7 @@
 
                         var _this = this;
                         var selection = _this._selection;
-                        var $button = $('<button type="button" class="btn btn-default" tabindex="-1" />');
+                        var $button = $('<button type="button" class="btn btn-default" tabindex="-1" style="height:32px;" />');
 
                         if (action)
                             $button.attr('data-action', action);

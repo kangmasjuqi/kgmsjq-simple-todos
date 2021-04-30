@@ -103,6 +103,32 @@ $( document ).ready(function() {
             $('.detail-container').hide();
         });
 
+        $('.remove-todo').click(function(e){
+            e.preventDefault();
+            if (confirm('Are you sure you want to remove the selected TODO?')) {
+                var todo_id = $('.remove-todo').attr('id')
+                $.ajax({
+                    url: root_url + 'api.php?f=delete&d='+todo_id,
+                    method:"POST",
+                    data:{todo_id:todo_id},
+                    success:function(data){
+                        $( "#todo-list li#"+todo_id ).remove();
+                        var displayed_todo_id = $( "#todo-list li:nth-child(2)" ).attr("id");
+                        if (typeof displayed_todo_id !== "undefined") {
+                            $('.detail-container').show();
+                            $('li#'+displayed_todo_id).addClass('active')
+                            get_todo_detail( displayed_todo_id )
+                        }else {
+                            setTimeout(function() {
+                                location.reload();
+                            }, 500);
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {}
+                });
+            }
+        });
+
         $( '#form-create-todo' ).on(
             'click',
             '.create-todo-finish',
@@ -186,10 +212,11 @@ $( document ).ready(function() {
                                             '<img width="12px" src="img/down-arrow.svg">' +
                                         '</a>'
                                     '</li>';
-                                    $( "#todo-list li:last" ).after( todo_data );
 
+                                $( "#todo-list li:last" ).after( todo_data );
                             }
                         );
+                        $( "#todo-list li:nth-child(2)" ).addClass('active');
                     },
                     complete: function(){
                         $( '#loading-notif' ).hide();
@@ -218,6 +245,7 @@ $( document ).ready(function() {
                             $( "textarea#todo-content" ).siblings( ".editor-content" ).html( data.content )
                             $( '#loading-notif' ).hide();
                             $( '.form-box' ).addClass( 'highlight' );
+                            $( ".form-box button.remove-todo" ).attr('id', data.id);
                         }
                     },
                     error: function(xhr, textStatus, errorThrown){

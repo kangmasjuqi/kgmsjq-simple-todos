@@ -86,6 +86,7 @@
                             <input type="hidden" id="todo-id">
                         </div>
                     </form>
+                    <button class="btn btn-danger remove-todo" id="">Remove</button>
                 </div>
             </div>
         </div>

@@ -35,6 +35,9 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
+/////////////////////////////////
+///// DB operations
+
 function create_data($conn, $array_data, $highest_ordering = 0){
     $fields = '';
     $values = '';
@@ -116,6 +119,15 @@ function get_data($conn, $id = ''){
     return $result;
 }
 
+function delete_data($conn, $id){
+
+    $sql = "delete from todos where id='".(int)$id."'";
+    if($conn->query($sql)===true)
+        return TRUE;
+    else 
+        return FALSE;
+}
+
 function get_raw_data($conn, $sql){
 
     $raw = $conn->query($sql);
@@ -127,25 +139,8 @@ function jsonify($data){
     return json_encode($data);
 }
 
-
-if( 'retrieve' === $_GET['f'] && 'highest_ordering' == $_GET['d'])
-    get_highest_ordering_todo($conn);
-
-else if( 'retrieve' === $_GET['f'] && 'all' == $_GET['d'])
-    get_all($conn);
-
-else if( 'retrieve' === $_GET['f'] && is_numeric($_GET['d'])===TRUE)
-    get_one($conn, $_GET['d']);
-
-else if( 'update' === $_GET['f'] && is_numeric($_GET['d'])===TRUE )
-    update($conn, $_POST['id'], $_POST['changed_data']);
-
-else if( 'sort' === $_GET['f'] && 'all' == $_GET['d'])
-    update_ordering($conn, $_POST['todo_id_array']);
-
-else if( 'create' === $_GET['f'] && is_numeric($_GET['d'])===TRUE ){
-    create($conn, $_POST);
-}
+/////////////////////////////////
+///// controller
 
 function get_highest_ordering_todo($conn){
     $sql = "select * from todos order by ordering desc";
@@ -160,6 +155,11 @@ function get_all($conn){
 
 function get_one($conn, $id){
     $result = get_data($conn, (int)$id);
+    echo jsonify($result);        
+}
+
+function delete($conn, $id){
+    $result = delete_data($conn, (int)$id);
     echo jsonify($result);        
 }
 
@@ -188,5 +188,32 @@ function create($conn, $new_data){
     }
     echo jsonify($result);        
 }
+
+
+/////////////////////////////////
+///// routes
+
+if( 'retrieve' === $_GET['f'] && 'highest_ordering' == $_GET['d'])
+    get_highest_ordering_todo($conn);
+
+else if( 'retrieve' === $_GET['f'] && 'all' == $_GET['d'])
+    get_all($conn);
+
+else if( 'retrieve' === $_GET['f'] && is_numeric($_GET['d'])===TRUE)
+    get_one($conn, $_GET['d']);
+
+else if( 'update' === $_GET['f'] && is_numeric($_GET['d'])===TRUE )
+    update($conn, $_POST['id'], $_POST['changed_data']);
+
+else if( 'sort' === $_GET['f'] && 'all' == $_GET['d'])
+    update_ordering($conn, $_POST['todo_id_array']);
+
+else if( 'delete' === $_GET['f'] && is_numeric($_GET['d'])===TRUE )
+    delete($conn, $_POST['todo_id']);
+
+else if( 'create' === $_GET['f'] && is_numeric($_GET['d'])===TRUE ){
+    create($conn, $_POST);
+}
+
 
 ?>

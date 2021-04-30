@@ -106,7 +106,7 @@
 }
 #todo-list li a:hover
 {
-    color:red;
+    color:black;
 }
 #todo-list li a span
 {
@@ -120,6 +120,10 @@
     border:1px dotted #ccc;
     cursor:move;
     margin-top:4px;
+}
+#todo-list li.active
+{
+    background-color:#caf0ffb5;
 }
 
 .footer{

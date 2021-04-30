@@ -57,6 +57,8 @@ $( document ).ready(function() {
                 $('.create-container').hide();
                 $('.detail-container').show();
                 var todo_id = $( this ).data( 'todo-id' );
+                $('#todo-list li').removeClass('active')
+                $('li#'+todo_id).addClass('active')
                 get_todo_detail( todo_id )
             }
         );

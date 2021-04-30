@@ -63,13 +63,13 @@ $( document ).ready(function() {
             }
         );
 
-        function display_note(){
+        function display_note(show_delay=7000, hide_delay=20000){
             setTimeout(() => { 
                 $('#changes-saved').show()
-            }, 5000);
+            }, show_delay);
             setTimeout(() => {
                 $('#changes-saved').hide()
-            }, 10000);            
+            }, hide_delay);
         }
 
         $( "#todo-list" ).sortable({

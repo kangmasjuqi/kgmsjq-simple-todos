@@ -18,7 +18,6 @@ if you choose to rename the app default folder `kgmsjq-simple-todos` to `MY_APP`
 ## todolist
 
 - minify js and css
-- refactor code to OOP
 - create demo using Loom
 
 ## contact

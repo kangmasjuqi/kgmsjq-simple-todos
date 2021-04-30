@@ -11,15 +11,13 @@ the app is intended to be used ONLY on your local machine as a simple todo-list 
 - dump the db file `todos.sql` into your database
 - adjust the database configuration in the file `api.php` using your local configuration
 - using browser, go to `http://localhost/kgmsjq-simple-todos`
-
 if you choose to rename the app default folder `kgmsjq-simple-todos` to `MY_APP`, then : 
-- update `root_url` in `app.js`, replace `kgmsjq-simple-todos` to `MY_APP`
 - using browser, go to `http://localhost/MY_APP`
 
 ## todolist
 
 - refactor code to OOP
-- licensing files
+- create demo using Loom
 
 ## contact
 

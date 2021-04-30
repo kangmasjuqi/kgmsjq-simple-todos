@@ -19,7 +19,7 @@ if you choose to rename the app default folder `kgmsjq-simple-todos` to `MY_APP`
 ## todolist
 
 - refactor code to OOP
-- ...
+- licensing files
 
 ## contact
 

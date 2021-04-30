@@ -134,8 +134,8 @@
             border: 1px solid #07a; }
 
 .wysiwyg-editor .editor-content {
-  min-height: 120px;
-  max-height: 480px;
+  min-height: 360px;
+  max-height: 720px;
   overflow: auto;
   padding: 15px;
   margin-bottom: 0px;

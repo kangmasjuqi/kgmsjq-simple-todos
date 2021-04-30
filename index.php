@@ -36,7 +36,7 @@
                 <p id="reordered-saved"><small>Reordered sucessfully!</small></p>
             </div>
         </div>
-        <div class="col-md-9" style="padding-left:0px;">
+        <div class="col-md-9" style="padding-left:0px;margin-top:-20px;">
             <div class="create-container">
                 <div class="form-box">
                     <form id="form-create-todo">

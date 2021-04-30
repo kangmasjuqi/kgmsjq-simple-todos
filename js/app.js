@@ -100,6 +100,7 @@ $( document ).ready(function() {
 
         $("#todo-title").on("change keyup paste", function() {
             let todo_id = $("#todo-id").val()
+            $('span#todo'+todo_id).html($("#todo-title").val());
             $.ajax(
                 {
                     url: root_url + 'api.php?f=update&d='+todo_id,
@@ -154,7 +155,7 @@ $( document ).ready(function() {
                                     '<li id="' + data.id + '">' +
                                         '<a class="link-detail" href="#" '+
                                             'data-todo-id="' + data.id + '">' + 
-                                            '<span>' + data.title + '</span>' +
+                                            '<span id="todo' + data.id + '">' + data.title + '</span>' +
                                             '<img width="12px" src="img/up-arrow.svg">' +
                                             '<img width="12px" src="img/down-arrow.svg">' +
                                         '</a>'

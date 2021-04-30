@@ -18,7 +18,6 @@ if you choose to rename the app default folder `kgmsjq-simple-todos` to `MY_APP`
 
 ## todolist
 
-- update title in the list once the title updated on the main container
 - refactor code to OOP
 - ...
 

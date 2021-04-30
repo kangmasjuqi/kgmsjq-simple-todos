@@ -24,6 +24,8 @@ function create_data($conn, $array_data, $highest_ordering = 0){
         if($fields!=='')
             $fields.= ', ';
 
+        $v = addslashes($v);
+
         $fields .= "`".$f."`";
         $values .= "'".$v."'";
     }
@@ -57,6 +59,9 @@ function update_data($conn, $id, $array_changed_data){
     foreach($array_changed_data as $f => $v){
         if($parsed_new_data!=='')
             $parsed_new_data.= ', ';
+
+        $v = addslashes($v);
+        
         $parsed_new_data= $f."='".$v."'";
     }
     $sql = "update todos set ".$parsed_new_data." where id='".(int)$id."'";

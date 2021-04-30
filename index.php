@@ -27,9 +27,8 @@
     </div>
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3" style="padding-right:0px;">
             <div id="table">
-                <h3 style="text-align: center;">TODOS</h3>
                 <div class="table-responsive">
                    <button class="btn btn-info pull-right create-todo">Add new todo</button>
                    <ul class="list-unstyled" id="todo-list"><li style="display:none;"></li></ul>
@@ -37,7 +36,7 @@
                 <p id="reordered-saved"><small>Reordered sucessfully!</small></p>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9" style="padding-left:0px;">
             <div class="create-container">
                 <div class="form-box">
                     <form id="form-create-todo">

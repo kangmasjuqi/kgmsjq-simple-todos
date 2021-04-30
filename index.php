@@ -28,9 +28,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="language" content="english">
     <meta name="viewport" content="width=device-width">
-    <meta name="description" content="Simple TODO App">
+    <meta name="description" content="Kgmsjq - Simple Todo App">
     <meta name="author" content="Marjuqi R.">
-    <title>Simple TODO App</title>
+    <title>Kgmsjq - Simple Todo App</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">

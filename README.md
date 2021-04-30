@@ -15,10 +15,13 @@ the app is intended to be used ONLY on your local machine as a simple todo-list 
 if you choose to rename the app default folder `kgmsjq-simple-todos` to `MY_APP`, then : 
 - using browser, go to `http://localhost/MY_APP`
 
+## demo 
+
+https://www.loom.com/share/fcd5130bd52249aa822f4104a8a45640
+
 ## todolist
 
 - minify js and css
-- create demo using Loom
 
 ## contact
 

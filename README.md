@@ -19,10 +19,6 @@ if you choose to rename the app default folder `kgmsjq-simple-todos` to `MY_APP`
 
 https://www.loom.com/share/fcd5130bd52249aa822f4104a8a45640
 
-## todolist
-
-- minify js and css
-
 ## contact
 
 - e : marjuqi[dot]rahmat[at]gmail

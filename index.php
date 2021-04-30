@@ -36,7 +36,7 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="wysiwyg-editor-bootstrap/dist/css/wysiwyg.css" rel="stylesheet">
     <link href="wysiwyg-editor-bootstrap/dist/css/highlight.min.css" rel="stylesheet">
-    <link href="css/app.css" rel="stylesheet">
+    <link href="css/app.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -133,6 +133,6 @@
     }
 ?>
 <script >let root_url = '<?php echo pathUrl(); ?>' </script>
-<script src="js/app.js"></script>
+<script src="js/app.min.js"></script>
 </body>
 </html>

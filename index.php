@@ -81,12 +81,14 @@
                     <form id="form-update-todo">
                         <div>
                             <h2><input class="field-element" type="text" id="todo-title"></h2>
-                            <p id="changes-saved"><small>Changes automatically saved.</small></p>
                             <textarea class="field-element" id="todo-content" rows="15" cols="100"></textarea>
                             <input type="hidden" id="todo-id">
                         </div>
                     </form>
-                    <button class="btn btn-danger remove-todo" id="">Remove</button>
+                    <div>
+                        <button class="btn btn-danger remove-todo" id="">Remove</button>
+                        <p id="changes-saved"><small>Changes automatically saved.</small></p>
+                    </div>
                 </div>
             </div>
         </div>

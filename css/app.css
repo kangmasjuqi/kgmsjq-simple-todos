@@ -132,3 +132,7 @@
     font-style: italic;
     margin-top: 100px;
 }
+
+button.remove-todo{
+    float: right;
+}

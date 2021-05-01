@@ -45,7 +45,7 @@
 
     <div><br/></div>
 
-    <div id="loading-notif">Please wait..Loading...</div>
+    <!--<div id="loading-notif">Please wait..Loading...</div>-->
     <div id="error-notif">
         Request error occured...<a href='#' onclick='location.reload(true); return false;'>Reload.</a>
     </div>

@@ -112,6 +112,8 @@
 {
     width:90%;
     display: inline-table;
+    font-weight: 600;
+    letter-spacing: 0.2;
 }
 #todo-list li.ui-state-highlight
 {
